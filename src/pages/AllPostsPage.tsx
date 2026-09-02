@@ -189,7 +189,7 @@ export const AllPostsPage: React.FC = () => {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-8 w-8 text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors"
+                      className="h-8 w-8 text-muted-foreground hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
                       title="Move to Thrash"
                       disabled={article.status?.toLowerCase() === 'thrash'}
                       onClick={() => handleOpenThrashDialog(article)}
@@ -288,8 +288,8 @@ export const AllPostsPage: React.FC = () => {
             <LoadingSpinner message="Memuat daftar artikel..." />
           </div>
         ) : isError ? (
-          <div className="rounded-lg border border-destructive/20 bg-destructive/5 p-8 text-center">
-            <AlertCircle className="h-10 w-10 text-destructive mx-auto mb-3" />
+          <div className="rounded-lg border border-red-200 bg-red-50/40 dark:border-red-900/30 dark:bg-red-950/20 p-8 text-center">
+            <AlertCircle className="h-10 w-10 text-red-600 dark:text-red-400 mx-auto mb-3" />
             <h3 className="text-lg font-semibold text-foreground mb-1">
               Gagal Memuat Artikel
             </h3>
@@ -322,17 +322,19 @@ export const AllPostsPage: React.FC = () => {
       <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle className="flex items-center gap-2 text-destructive">
-              <Trash2 className="h-5 w-5" />
-              Pindahkan Artikel ke Trash?
+            <AlertDialogTitle className="flex items-center gap-2.5 text-foreground font-semibold text-lg">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-100/80 text-red-600 dark:bg-red-950/40 dark:text-red-400">
+                <Trash2 className="h-4 w-4" />
+              </div>
+              <span>Pindahkan Artikel ke Trash?</span>
             </AlertDialogTitle>
-            <AlertDialogDescription className="pt-2">
+            <AlertDialogDescription className="pt-2 text-muted-foreground leading-relaxed">
               Artikel <span className="font-semibold text-foreground">"{articleToThrash?.title}"</span>{' '}
-              akan dipindahkan ke tab <span className="font-semibold">Trashed</span> dan tidak
-              lagi tampil di blog publik. Anda tetap dapat melihatnya di tab Trashed.
+              akan dipindahkan ke tab <span className="font-semibold text-foreground">Trashed</span> dan tidak
+              lagi tampil di blog publik. Anda tetap dapat mengaksesnya di tab Trashed.
             </AlertDialogDescription>
           </AlertDialogHeader>
-          <AlertDialogFooter>
+          <AlertDialogFooter className="mt-4">
             <AlertDialogCancel disabled={isUpdating}>Batal</AlertDialogCancel>
             <AlertDialogAction
               onClick={(e) => {
@@ -340,7 +342,7 @@ export const AllPostsPage: React.FC = () => {
                 handleConfirmThrash();
               }}
               disabled={isUpdating}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="bg-red-600 text-white hover:bg-red-700 active:bg-red-800 shadow-xs border-transparent font-medium"
             >
               {isUpdating ? 'Memindahkan...' : 'Pindahkan ke Trash'}
             </AlertDialogAction>

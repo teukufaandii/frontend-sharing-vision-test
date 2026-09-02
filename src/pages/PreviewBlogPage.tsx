@@ -143,7 +143,7 @@ export const PreviewBlogPage: React.FC = () => {
       <div className="container mx-auto max-w-6xl">
         {/* Blog Hero Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border/70 bg-muted/60 text-foreground text-xs font-medium mb-4 shadow-2xs">
             <BookOpen className="h-3.5 w-3.5" />
             <span>Public Article Showcase</span>
           </div>
@@ -169,16 +169,6 @@ export const PreviewBlogPage: React.FC = () => {
                 className="pl-9 h-10 bg-background shadow-xs"
               />
             </div>
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={() => refetch()}
-              disabled={isFetching}
-              title="Refresh Articles"
-              className="shrink-0 h-10 w-10"
-            >
-              <RefreshCw className={`h-4 w-4 ${isFetching ? 'animate-spin' : ''}`} />
-            </Button>
           </div>
         </div>
 
@@ -237,7 +227,7 @@ export const PreviewBlogPage: React.FC = () => {
                         <div className="flex items-center justify-between gap-2 mb-3">
                           <Badge
                             variant="secondary"
-                            className="bg-primary/10 text-primary hover:bg-primary/20 font-medium transition-colors"
+                            className="font-medium"
                           >
                             {article.category}
                           </Badge>
@@ -346,7 +336,7 @@ export const PreviewBlogPage: React.FC = () => {
             <>
               <DialogHeader className="space-y-3 pb-4 border-b">
                 <div className="flex items-center gap-2">
-                  <Badge variant="secondary" className="bg-primary/10 text-primary font-medium">
+                  <Badge variant="secondary" className="font-medium">
                     {selectedArticle.category}
                   </Badge>
                   <span className="text-xs text-muted-foreground font-mono">
